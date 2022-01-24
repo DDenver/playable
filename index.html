@@ -571,25 +571,24 @@ function boot() {
 }();
 </script>
 <script charset="utf-8">
-window.NETWORK = "unity";
-window.AD_NET = 'unt';
+window.NETWORK = "applovin";
+window.AD_NET = 'apl';
 window.SOUND_ON = true;
-window.ANALYTICS_ON = true;
+window.ANALYTICS_ON = false;
 window.IS_STANDALONE = false;
 
 const startGame = () => {
-    if(startGame.started) return;
+    if (startGame.started) return;
     startGame.started = true;
 
 
     if(window.Game && !window.cc) {
         Game.init();
-
         try {
             initListeners();
-        }
-        catch (e) {}
-        finally {
+            mraid.expand();
+        } catch (e) {
+        } finally {
             LayoutManager.fitLayout();
         }
     } else if(!window.Game && window.cc) {
@@ -639,7 +638,7 @@ const mraidViewableHandler = (flag) => {
 const initListeners = () => {
     window.addEventListener("resize", LayoutManager.fitLayout);
     setInterval(LayoutManager.fitLayout, 100);
-    
+
     mraid.addEventListener("stateChange", (state) => {
         if (state === "expanded") {
             startGame();
@@ -660,7 +659,7 @@ const initListeners = () => {
 };
 
 const callSDK = (e) => {
-    if(e === "download") {
+    if (e === "download") {
         let userAgent = navigator.userAgent || navigator.vendor;
         let url = CONFIG.appStoreUrl;
         if (/android/i.test(userAgent)) {
@@ -691,12 +690,10 @@ const redirect = ()=> {
 try {
     if (mraid.getState() === "loading") {
         mraid.addEventListener("ready", mraidReadyHandler);
-    }
-    else {
+    } else {
         mraidReadyHandler();
     }
-}
-catch (e) {
+} catch (e) {
     if (e.name === "ReferenceError") {
         // mraid is not defined
         window.addEventListener("load", domReadyHandler);
