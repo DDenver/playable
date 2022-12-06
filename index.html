@@ -1,90 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-
-  <title>Cocos Creator | PlayableAds</title>
-
-  <!--http://www.html5rocks.com/en/mobile/mobifying/-->
-  <meta name="viewport"
-        content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
-
-  <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="format-detection" content="telephone=no">
-
-  <!-- force webkit on 360 -->
-  <meta name="renderer" content="webkit"/>
-  <meta name="force-rendering" content="webkit"/>
-  <!-- force edge on IE -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <meta name="msapplication-tap-highlight" content="no">
-
-  <!-- force full screen on some browser -->
-  <meta name="full-screen" content="yes"/>
-  <meta name="x5-fullscreen" content="true"/>
-  <meta name="360-fullscreen" content="true"/>
-  
-  <!-- force screen orientation on some browser -->
-  <meta name="screen-orientation" content="portrait"/>
-  <meta name="x5-orientation" content="portrait">
-
-  <!--fix fireball/issues/3568 -->
-  <!--<meta name="browsermode" content="application">-->
-  <meta name="x5-page-mode" content="app">
-
-  <!--<link rel="apple-touch-icon" href=".png" />-->
-  <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
-
-  <link rel="stylesheet" type="text/css" href="style-mobile.css"/>
-  <link rel="icon" href="favicon.ico"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playable</title>
+    <base target="_blank">
 </head>
+
+<style>
+    body {
+        background-color: #e0dccf;
+    }
+
+    h1 {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        text-align: center;
+        margin-top: 15%;
+        margin-bottom: 5%;
+        color: #434343;
+    }
+
+    .border {
+        list-style: none;
+        padding: 0;
+        margin-left: 25%;
+        margin-right: 25%;
+        width: 50%;
+    }
+
+    a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: #434343;
+        text-align: center;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        padding: 7px 20px;
+        margin-bottom: 14px;
+        border-radius: 5px;
+        box-shadow: 2px -2px 5px 0 rgba(0, 0, 0, .1),
+            -2px -2px 5px 0 rgba(0, 0, 0, .1),
+            2px 2px 5px 0 rgba(0, 0, 0, .1),
+            -2px 2px 5px 0 rgba(0, 0, 0, .1);
+        font-size: 25px;
+    }
+
+    .border li a:hover {
+        background-color: #e2c17b;
+        transition: 0.2s all linear;
+    }
+</style>
+
 <body>
-  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
-  <div id="splash">
-    <div class="progress-bar stripes">
-      <span style="width: 0%"></span>
+    <h1 class="title">Playable ads examples</h1>
+
+    <div class="mainHolder">
+        <ul class="border">
+            <li><a href="./playable_builds/blocks-merger-v1.html">BlocksMerger</a></li>
+            <li><a href="./playable_builds/majong-v1.html">Majong</a></li>
+            <li><a href="./playable_builds/jigsaw-v1.html">Jigsaw</a></li>
+            <li><a href="./playable_builds/join-and-strike-v2.html">JoinAndStrike</a></li>
+            <li><a href="./playable_builds/pencil-rush-v8.html">PencilRush</a></li>
+            <li><a href="./playable_builds/save-the-vip-v5.html">SaveTheVip</a></li>
+            <li><a href="./playable_builds/transform-master-v2.html">TransformMaster</a></li>
+            <li><a href="./playable_builds/party-gang-v6.html">PartyGang</a></li>
+            <li><a href="./playable_builds/cool-goal-v6.html">CoolGoal</a></li>
+
+        </ul>
     </div>
-  </div>
 
-<script src="src/settings.js" charset="utf-8"></script>
-
-<script src="main.js" charset="utf-8"></script>
-
-<script type="text/javascript">
-(function () {
-    // open web debugger console
-    if (typeof VConsole !== 'undefined') {
-        window.vConsole = new VConsole();
-    }
-
-    var debug = window._CCSettings.debug;
-    var splash = document.getElementById('splash');
-    splash.style.display = 'block';
-
-    function loadScript (moduleName, cb) {
-      function scriptLoaded () {
-          document.body.removeChild(domScript);
-          domScript.removeEventListener('load', scriptLoaded, false);
-          cb && cb();
-      };
-      var domScript = document.createElement('script');
-      domScript.async = true;
-      domScript.src = moduleName;
-      domScript.addEventListener('load', scriptLoaded, false);
-      document.body.appendChild(domScript);
-    }
-
-    loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.js', function () {
-      if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
-        loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
-      }
-      else {
-        window.boot();
-      }
-    });
-})();
-</script>
 </body>
+
 </html>
